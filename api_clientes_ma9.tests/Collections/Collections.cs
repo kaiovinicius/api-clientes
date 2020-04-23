@@ -1,4 +1,4 @@
-﻿namespace api_clientes_ma9.webapi.tests.collections
+﻿namespace api_clientes_ma9.tests.collections
 {
     public static class Collections
     {

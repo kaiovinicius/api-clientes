@@ -1,5 +1,5 @@
-﻿using api_clientes_ma9.application.Models;
-using api_clientes_ma9.webapi.tests.collections;
+﻿using api_clientes_ma9.application.dto;
+using api_clientes_ma9.tests.collections;
 using Bogus;
 using Bogus.DataSets;
 using Bogus.Extensions.Brazil;
@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace api_clientes_ma9.webapi.tests.fixtures
+namespace api_clientes_ma9.tests.fixtures
 {
     [CollectionDefinition(Collections.ClienteCollection)]
     public class ClienteCollection : ICollectionFixture<ClienteTestsFixture>

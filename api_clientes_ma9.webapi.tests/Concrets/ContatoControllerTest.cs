@@ -1,8 +1,8 @@
-﻿using api_clientes_ma9.application.Abstracts;
-using api_clientes_ma9.application.Models;
+﻿using api_clientes_ma9.application.abstracts;
+using api_clientes_ma9.application.dto;
 using api_clientes_ma9.Controllers;
-using api_clientes_ma9.webapi.tests.collections;
-using api_clientes_ma9.webapi.tests.fixtures;
+using api_clientes_ma9.tests.collections;
+using api_clientes_ma9.tests.fixtures;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -10,21 +10,22 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Xunit;
+using Xunit.Extensions.AssemblyFixture;
 
 namespace api_clientes_ma9.webapi.tests.concrets
 {
     [Collection(Collections.ContatoCollection)]
-    public class ContatoControllerTest
+    public class ContatoControllerTest : IAssemblyFixture<ContatoTestsFixture>
     {
         #region Variaveis
-        readonly ContatoTestsFixture _contatoTestsFixture;
+        private readonly ContatoTestsFixture _contatoTestsFixture;
         Random rnd = new Random(); 
         #endregion
 
         #region Construtor
         public ContatoControllerTest(ContatoTestsFixture contatoTestsFixture)
         {
-            _contatoTestsFixture = contatoTestsFixture;
+            this._contatoTestsFixture = contatoTestsFixture;
         }
         #endregion
 

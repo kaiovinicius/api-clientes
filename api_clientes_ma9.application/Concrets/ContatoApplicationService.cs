@@ -1,5 +1,5 @@
-﻿using api_clientes_ma9.application.Abstracts;
-using api_clientes_ma9.application.Models;
+﻿using api_clientes_ma9.application.abstracts;
+using api_clientes_ma9.application.dto;
 using api_clientes_ma9.cross.cutting.Abstracts;
 using api_clientes_ma9.domain.Abstracts;
 using System.Collections.Generic;

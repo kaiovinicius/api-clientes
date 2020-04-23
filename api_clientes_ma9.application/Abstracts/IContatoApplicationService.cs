@@ -1,7 +1,7 @@
-﻿using api_clientes_ma9.application.Models;
+﻿using api_clientes_ma9.application.dto;
 using System.Collections.Generic;
 
-namespace api_clientes_ma9.application.Abstracts
+namespace api_clientes_ma9.application.abstracts
 {
     public interface IContatoApplicationService
     {

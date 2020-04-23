@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -9,7 +9,6 @@
   <ItemGroup>
     <PackageReference Include="Bogus" Version="29.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-    <PackageReference Include="Moq" Version="4.13.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.abstractions" Version="2.0.3" />
     <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
@@ -20,9 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\api_clientes_ma9.application\api_clientes_ma9.application.csproj" />
-    <ProjectReference Include="..\api_clientes_ma9.tests\api_clientes_ma9.tests.csproj" />
-    <ProjectReference Include="..\api_clientes_ma9.webapi\api_clientes_ma9.webapi.csproj" />
+    <ProjectReference Include="..\api_clientes_ma9.application.DTO\api_clientes_ma9.application.DTO.csproj" />
   </ItemGroup>
 
 </Project>

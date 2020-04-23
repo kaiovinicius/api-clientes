@@ -1,4 +1,4 @@
-﻿using api_clientes_ma9.application.Models;
+﻿using api_clientes_ma9.application.dto;
 using api_clientes_ma9.cross.cutting.Abstracts;
 using api_clientes_ma9.Entities;
 using System.Collections.Generic;

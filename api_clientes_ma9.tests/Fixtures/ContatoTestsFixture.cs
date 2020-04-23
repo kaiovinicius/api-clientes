@@ -1,11 +1,11 @@
-﻿using api_clientes_ma9.application.Models;
-using api_clientes_ma9.webapi.tests.collections;
+﻿using api_clientes_ma9.application.dto;
+using api_clientes_ma9.tests.collections;
 using Bogus;
 using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace api_clientes_ma9.webapi.tests.fixtures
+namespace api_clientes_ma9.tests.fixtures
 {
     [CollectionDefinition(Collections.ContatoCollection)]
     public class ContatoCollection : ICollectionFixture<ContatoTestsFixture>
@@ -13,6 +13,11 @@ namespace api_clientes_ma9.webapi.tests.fixtures
 
     public class ContatoTestsFixture : IDisposable
     {
+
+        public ContatoTestsFixture()
+        {
+        }
+
         Random rnd = new Random();
 
         #region GerarContatos
@@ -49,7 +54,7 @@ namespace api_clientes_ma9.webapi.tests.fixtures
         /// </summary>
         public void Dispose()
         {
-        } 
+        }
         #endregion
     }
 }
