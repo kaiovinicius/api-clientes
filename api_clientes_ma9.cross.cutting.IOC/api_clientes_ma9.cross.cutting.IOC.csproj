@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\api_clientes_ma9.application\api_clientes_ma9.application.csproj" />
+    <ProjectReference Include="..\api_clientes_ma9.cross.cutting\api_clientes_ma9.cross.cutting.csproj" />
+    <ProjectReference Include="..\api_clientes_ma9.data.acces\api_clientes_ma9.data.csproj" />
+    <ProjectReference Include="..\api_clientes_ma9.domain\api_clientes_ma9.domain.csproj" />
+    <ProjectReference Include="..\api_clientes_ma9.repository\api_clientes_ma9.repository.csproj" />
+    <ProjectReference Include="..\api_clientes_ma9.services\api_clientes_ma9.services.csproj" />
+  </ItemGroup>
+
+</Project>

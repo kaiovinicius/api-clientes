@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "c308fc55-cdf6-4e0a-87c0-daa3cb8bc32a",
+		"name": "api_ma9_clientes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Listar Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44301/api/Clientes",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44301",
+							"path": [
+								"api",
+								"Clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44301/api/Clientes/{id}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44301",
+							"path": [
+								"api",
+								"Clientes",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inserir Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"string\",\n\t\"sobrenome\": \"string\",\n\t\"cpf\": \"string\",\n\t\"sexo\": \"char\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44301/api/Clientes",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44301",
+							"path": [
+								"api",
+								"Clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\t\n\t\"id\": 1,\n\t\"nome\": \"string\",\n\t\"sobrenome\": \"string\",\n\t\"cpf\": \"string\",\n\t\"sexo\": \"char\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44301/api/Clientes",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44301",
+							"path": [
+								"api",
+								"Clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44301/api/Clientes/{id}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44301",
+							"path": [
+								"api",
+								"Clientes",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Contatos",
+			"item": [
+				{
+					"name": "Listar Contatos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44301/api/Contatos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44301",
+							"path": [
+								"api",
+								"Contatos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Contato",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44301/api/Contatos/{id}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44301",
+							"path": [
+								"api",
+								"Contatos",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inserir Contato",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idCliente\": 1,\n\t\"ddd\": \"string\",\n\t\"numero\": \"string\",\n\t\"email\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44301/api/Contatos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44301",
+							"path": [
+								"api",
+								"Contatos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar Contato",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\t\n\t\"id\": 1,\n\t\"idCliente\": 1,\n\t\"ddd\": \"string\",\n\t\"numero\": \"string\",\n\t\"email\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44301/api/Contatos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44301",
+							"path": [
+								"api",
+								"Contatos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Contato",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44301/api/Contatos/{id}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44301",
+							"path": [
+								"api",
+								"Contatos",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
