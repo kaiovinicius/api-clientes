@@ -3,7 +3,7 @@ using api_clientes_ma9.application.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace api_clientes_ma9.Controllers
+namespace api_clientes_ma9.webapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

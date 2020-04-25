@@ -7,7 +7,7 @@ namespace api_clientes_ma9.data
     {
         public Ma9_ClientesContext() { }
 
-        public Ma9_ClientesContext(DbContextOptions<Ma9_ClientesContext> options) : base(options) { } 
+        public Ma9_ClientesContext(DbContextOptions<Ma9_ClientesContext> options) : base(options) { }
 
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Contato> Contatos { get; set; }

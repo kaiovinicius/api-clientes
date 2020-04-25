@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\api_clientes_ma9.application.DTO\api_clientes_ma9.application.DTO.csproj" />
-    <ProjectReference Include="..\api_clientes_ma9.data.acces\api_clientes_ma9.data.csproj" />
     <ProjectReference Include="..\api_clientes_ma9.domain\api_clientes_ma9.domain.csproj" />
   </ItemGroup>
 

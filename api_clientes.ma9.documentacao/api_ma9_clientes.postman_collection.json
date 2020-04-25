@@ -14,12 +14,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/Clientes",
-							"protocol": "https",
+							"raw": "http://localhost:3000/api/Clientes",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "44301",
+							"port": "3000",
 							"path": [
 								"api",
 								"Clientes"
@@ -34,12 +34,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/Clientes/{id}",
+							"raw": "https://localhost:3000/api/Clientes/{id}",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "44301",
+							"port": "3000",
 							"path": [
 								"api",
 								"Clientes",
@@ -64,12 +64,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Clientes",
+							"raw": "https://localhost:3000/api/Clientes",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "44301",
+							"port": "3000",
 							"path": [
 								"api",
 								"Clientes"
@@ -93,12 +93,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Clientes",
+							"raw": "https://localhost:3000/api/Clientes",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "44301",
+							"port": "3000",
 							"path": [
 								"api",
 								"Clientes"
@@ -113,12 +113,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/Clientes/{id}",
+							"raw": "https://localhost:3000/api/Clientes/{id}",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "44301",
+							"port": "3000",
 							"path": [
 								"api",
 								"Clientes",
@@ -140,12 +140,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/Contatos",
-							"protocol": "https",
+							"raw": "http://localhost:3000/api/Contatos",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "44301",
+							"port": "3000",
 							"path": [
 								"api",
 								"Contatos"
@@ -160,12 +160,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/Contatos/{id}",
+							"raw": "https://localhost:3000/api/Contatos/{id}",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "44301",
+							"port": "3000",
 							"path": [
 								"api",
 								"Contatos",
@@ -182,7 +182,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"idCliente\": 1,\n\t\"ddd\": \"string\",\n\t\"numero\": \"string\",\n\t\"email\": \"string\"\n}",
+							"raw": "{\n\t\"idCliente\": 4,\n\t\"ddd\": \"79\",\n\t\"numero\": \"99080228\",\n\t\"email\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -190,12 +190,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Contatos",
+							"raw": "https://localhost:3000/api/Contatos",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "44301",
+							"port": "3000",
 							"path": [
 								"api",
 								"Contatos"
@@ -219,12 +219,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Contatos",
+							"raw": "https://localhost:3000/api/Contatos",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "44301",
+							"port": "3000",
 							"path": [
 								"api",
 								"Contatos"
@@ -239,12 +239,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/Contatos/{id}",
+							"raw": "https://localhost:3000/api/Contatos/{id}",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "44301",
+							"port": "3000",
 							"path": [
 								"api",
 								"Contatos",

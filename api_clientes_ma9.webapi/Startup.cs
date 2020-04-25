@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace api_clientes_ma9
+namespace api_clientes_ma9.webapi
 {
     public class Startup
     {
@@ -24,13 +24,13 @@ namespace api_clientes_ma9
             services.AddDbContext<Ma9_ClientesContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddControllers();
+            services.AddControllersWithViews();
         }
 
         public void ConfigureContainer(ContainerBuilder Builder)
         {
             Builder.RegisterModule(new ModuleIOC());
-        }   
+        }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -38,8 +38,11 @@ namespace api_clientes_ma9
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -47,7 +50,9 @@ namespace api_clientes_ma9
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

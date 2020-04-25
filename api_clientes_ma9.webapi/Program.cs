@@ -2,7 +2,7 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace api_clientes_ma9
+namespace api_clientes_ma9.webapi
 {
     public class Program
     {
