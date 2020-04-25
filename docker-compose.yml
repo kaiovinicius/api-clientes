@@ -1,7 +1,7 @@
 version: '3.5'
 
 networks:
-  network_api_ma9_clientes:
+  network_api_clientes:
     driver: bridge
 
 volumes:
@@ -21,9 +21,9 @@ services:
             - volume_postgres:/var/lib/postgresql/data
             - ./init.sql :/docker-entrypoint-initdb.d/init.sql
         networks:
-            - network_api_ma9_clientes
+            - network_api_clientes
         environment:
-            POSTGRES_DB: clientes_ma9
+            POSTGRES_DB: api_db
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: postgres
             CONFIGS: "listen_addresses:'*'"
@@ -36,7 +36,7 @@ services:
         volumes:
             - 'volume_pgadmin:/root/.pgadmin'
         networks:
-            - network_api_ma9_clientes
+            - network_api_clientes
         environment:
             PGADMIN_DEFAULT_EMAIL: '${PGADMIN_DEFAULT_EMAIL:-admin}'
             PGADMIN_DEFAULT_PASSWORD: '${PGADMIN_DEFAULT_PASSWORD:-admin}'
@@ -44,9 +44,9 @@ services:
             - service_postgres
         restart: unless-stopped
 
-    service_api_ma9_clientes:
+    service_api_clientes:
         container_name: cnt-api
-        image: 'api_clientes_ma9:latest'
+        image: 'api_clientes:latest'
         links:
             - service_postgres
         depends_on:
@@ -58,6 +58,6 @@ services:
             - '3000:80'
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
-            - 'DB_CONNECTION_STRING="User ID=postgres; Password=postgres; Server=service_postgres; Port=5432; Database=clientes_ma9; Integrated Security=true;Pooling=true;"'
+            - 'DB_CONNECTION_STRING="User ID=postgres; Password=postgres; Server=service_postgres; Port=5432; Database=api_db; Integrated Security=true;Pooling=true;"'
         networks:
-            - network_api_ma9_clientes
+            - network_api_clientes

@@ -1,5 +1,5 @@
 ﻿
-\connect clientes_ma9
+\connect api_db
 
 CREATE TABLE "Cliente"
 (

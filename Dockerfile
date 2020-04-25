@@ -21,4 +21,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
 
-ENTRYPOINT ["dotnet", "api_clientes_ma9.webapi.dll"]
+ENTRYPOINT ["dotnet", "api_clientes.webapi.dll"]

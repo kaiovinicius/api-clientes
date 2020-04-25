@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>api_clientes.cross.cutting</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\api_clientes.application.DTO\api_clientes.application.DTO.csproj" />
+    <ProjectReference Include="..\api_clientes.domain\api_clientes.domain.csproj" />
+  </ItemGroup>
+
+</Project>
