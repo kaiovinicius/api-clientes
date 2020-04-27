@@ -8,7 +8,6 @@ volumes:
   volume_postgres:
   volume_pgadmin: 
 
-
 services:
 
     service_postgres:
@@ -58,6 +57,21 @@ services:
             - '3000:80'
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
-            - 'DB_CONNECTION_STRING="User ID=postgres; Password=postgres; Server=service_postgres; Port=5432; Database=api_db; Integrated Security=true;Pooling=true;"'
+            - 'DB_CONNECTION_STRING="User ID=postgres; Password=postgres; Server=service_postgres; Port=5432; Database=api_db; Integrated Security=true; Pooling=true;"'
         networks:
             - network_api_clientes
+
+    service_web:
+        container_name: cnt-web
+        build:
+          context: ./Nginx
+          dockerfile: Dockerfile
+        ports:
+            - '80:80'
+        restart: always
+        networks:
+            - network_api_clientes
+        links:
+            - service_api_clientes:service_api_clientes
+        depends_on:
+            - service_api_clientes
