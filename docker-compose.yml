@@ -63,9 +63,7 @@ services:
 
     service_web:
         container_name: cnt-web
-        build:
-          context: ./Nginx
-          dockerfile: Dockerfile
+        image: 'nginx:alpine'
         ports:
             - '80:80'
         restart: always
@@ -75,3 +73,6 @@ services:
             - service_api_clientes:service_api_clientes
         depends_on:
             - service_api_clientes
+        volumes:
+            - './nginx.conf:/etc/nginx/conf.d/default.conf'
+            - './:/usr/share/nginx/html'
