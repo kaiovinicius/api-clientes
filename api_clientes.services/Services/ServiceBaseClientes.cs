@@ -1,15 +1,15 @@
-﻿using api_clientes.Data_Acess.Abstracts.Repositories;
-using api_clientes.domain.Abstracts.Services;
+﻿using api_clientes.domain.Abstracts.Services;
+using api_clientes.domain.core.Abstracts.Repositories.DbClientes;
 using System.Collections.Generic;
 
 namespace api_clientes.domain.Services
 {
-    public class ServiceBase<TEntity> : IServiceBase<TEntity> where TEntity : class
+    public class ServiceBaseClientes<TEntity> : IServiceBaseCliente<TEntity> where TEntity : class
     {
         #region Construtor
-        private readonly IRepositoryBase<TEntity> repositoryBase;
+        private readonly IRepositoryBaseDbClientes<TEntity> repositoryBase;
 
-        public ServiceBase(IRepositoryBase<TEntity> repositoryBase)
+        public ServiceBaseClientes(IRepositoryBaseDbClientes<TEntity> repositoryBase)
         {
             this.repositoryBase = repositoryBase;
         }

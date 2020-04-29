@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace api_clientes.Entities
+namespace api_clientes.domain.Entities
 {
     public partial class Cliente
     {

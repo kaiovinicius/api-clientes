@@ -1,7 +1,7 @@
 ﻿using api_clientes.application.Abstracts;
-using api_clientes.application.Models;
+using api_clientes.application.DTO.Models;
 using api_clientes.cross.cutting.Abstracts;
-using api_clientes.domain.Abstracts;
+using api_clientes.domain.core.Abstracts.Services;
 using System.Collections.Generic;
 
 namespace api_clientes.application.Concrets

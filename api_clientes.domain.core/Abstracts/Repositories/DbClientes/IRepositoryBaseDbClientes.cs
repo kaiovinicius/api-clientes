@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace api_clientes.domain.Abstracts.Services
+namespace api_clientes.domain.core.Abstracts.Repositories.DbClientes
 {
-    public interface IServiceBase<TEntity> where TEntity : class
+    public interface IRepositoryBaseDbClientes<TEntity> where TEntity : class
     {
         #region Listar
         List<TEntity> Listar();

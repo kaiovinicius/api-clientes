@@ -1,18 +1,18 @@
 ﻿using api_clientes.data;
-using api_clientes.Data_Acess.Abstracts.Repositories;
+using api_clientes.domain.core.Abstracts.Repositories.DbEnderecos;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace api_clientes.repository
+namespace api_clientes.repository.DbEnderecos
 {
-    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>, IDisposable where TEntity : class
+    public class RepositoryBaseEndereco<TEntity> : IRepositoryBaseDbEnderecos<TEntity>, IDisposable where TEntity : class
     {
         #region Construtor
-        private readonly Ma9_ClientesContext context;
+        private readonly EnderecosContext context;
 
-        public RepositoryBase(Ma9_ClientesContext context)
+        public RepositoryBaseEndereco(EnderecosContext context)
         {
             this.context = context;
         }
@@ -128,7 +128,7 @@ namespace api_clientes.repository
             {
                 context.Entry(local).State = EntityState.Detached;
             }
-        } 
+        }
         #endregion
     }
 }

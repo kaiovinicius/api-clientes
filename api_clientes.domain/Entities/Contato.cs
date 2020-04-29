@@ -1,7 +1,6 @@
-﻿using FluentValidation;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace api_clientes.Entities
+namespace api_clientes.domain.Entities
 {
     public partial class Contato
     {

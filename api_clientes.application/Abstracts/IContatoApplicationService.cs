@@ -1,4 +1,4 @@
-﻿using api_clientes.application.Models;
+﻿using api_clientes.application.DTO.Models;
 using System.Collections.Generic;
 
 namespace api_clientes.application.Abstracts

@@ -7,14 +7,14 @@ namespace api_clientes.webapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContatosController : ControllerBase
+    public class EnderecosController : ControllerBase
     {
         #region Construtor
-        private readonly IContatoApplicationService applicationServiceContato;
+        private readonly IEnderecoApplicationService applicationServiceEndereco;
 
-        public ContatosController(IContatoApplicationService applicationServiceContato)
+        public EnderecosController(IEnderecoApplicationService applicationServiceEndereco)
         {
-            this.applicationServiceContato = applicationServiceContato;
+            this.applicationServiceEndereco = applicationServiceEndereco;
         }
         #endregion
 
@@ -24,11 +24,11 @@ namespace api_clientes.webapi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public List<ContatoDTO> Listar()
+        public List<EnderecoDTO> Listar()
         {
-            var contatos = applicationServiceContato.Listar();
+            var enderecos = applicationServiceEndereco.Listar();
 
-            return new List<ContatoDTO>(contatos);
+            return new List<EnderecoDTO>(enderecos);
         }
         #endregion
 
@@ -39,11 +39,11 @@ namespace api_clientes.webapi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public ContatoDTO Obter(int id)
+        public EnderecoDTO Obter(int id)
         {
-            var contato = applicationServiceContato.Obter(id);
+            var endereco = applicationServiceEndereco.Obter(id);
 
-            return contato;
+            return endereco;
         }
         #endregion
 
@@ -51,19 +51,19 @@ namespace api_clientes.webapi.Controllers
         /// <summary>
         /// Inserir
         /// </summary>
-        /// <param name="contatoDTO"></param>
+        /// <param name="enderecoDTO"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Inserir([FromBody] ContatoDTO contatoDTO)
+        public ActionResult Inserir([FromBody] EnderecoDTO enderecoDTO)
         {
             if (!ModelState.IsValid)
             {
                 return NotFound();
             }
 
-            applicationServiceContato.Inserir(contatoDTO);
+            applicationServiceEndereco.Inserir(enderecoDTO);
 
-            return Ok("Contato Cadastrado com sucesso!");
+            return Ok("Endereco Cadastrado com sucesso!");
         }
         #endregion
 
@@ -71,19 +71,19 @@ namespace api_clientes.webapi.Controllers
         /// <summary>
         /// Alterar
         /// </summary>
-        /// <param name="contatoDTO"></param>
+        /// <param name="enderecoDTO"></param>
         /// <returns></returns>
         [HttpPut]
-        public ActionResult Alterar([FromBody] ContatoDTO contatoDTO)
+        public ActionResult Alterar([FromBody] EnderecoDTO enderecoDTO)
         {
             if (!ModelState.IsValid)
             {
                 return NotFound();
             }
 
-            applicationServiceContato.Alterar(contatoDTO);
+            applicationServiceEndereco.Alterar(enderecoDTO);
 
-            return Ok("Contato Alterado com sucesso!");
+            return Ok("Endereco Alterado com sucesso!");
 
         }
         #endregion
@@ -97,9 +97,9 @@ namespace api_clientes.webapi.Controllers
         [HttpDelete("{id}")]
         public ActionResult Excluir(int id)
         {
-            applicationServiceContato.Excluir(id);
+            applicationServiceEndereco.Excluir(id);
 
-            return Ok("Contato Removido com sucesso!");
+            return Ok("Endereco Removido com sucesso!");
         }
         #endregion
     }

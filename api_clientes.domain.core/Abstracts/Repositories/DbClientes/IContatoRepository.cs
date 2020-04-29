@@ -1,9 +1,8 @@
-﻿
-using api_clientes.Entities;
+﻿using api_clientes.domain.Entities;
 
-namespace api_clientes.Data_Acess.Abstracts.Repositories
+namespace api_clientes.domain.core.Abstracts.Repositories.DbClientes
 {
-    public interface IContatoRepository : IRepositoryBase<Contato>
+    public interface IContatoRepository : IRepositoryBaseDbClientes<Contato>
     {
         #region ObterPorIdCliente
         /// <summary>

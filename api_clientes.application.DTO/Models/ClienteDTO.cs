@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace api_clientes.application.Models
+namespace api_clientes.application.DTO.Models
 {
     public partial class ClienteDTO
     {

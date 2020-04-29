@@ -1,9 +1,9 @@
 ﻿using api_clientes.domain.Abstracts.Services;
-using api_clientes.Entities;
+using api_clientes.domain.Entities;
 
-namespace api_clientes.domain.Abstracts
+namespace api_clientes.domain.core.Abstracts.Services
 {
-    public interface IClienteService : IServiceBase<Cliente>
+    public interface IClienteService : IServiceBaseCliente<Cliente>
     {
     }
 }

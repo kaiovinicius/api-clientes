@@ -1,11 +1,11 @@
-﻿using api_clientes.Data_Acess.Abstracts.Repositories;
-using api_clientes.domain.Abstracts;
-using api_clientes.Entities;
+﻿using api_clientes.domain.core.Abstracts.Repositories.DbClientes;
+using api_clientes.domain.core.Abstracts.Services;
+using api_clientes.domain.Entities;
 using System;
 
 namespace api_clientes.domain.Services
 {
-    public class ContatoService : ServiceBase<Contato>, IContatoService
+    public class ContatoService : ServiceBaseClientes<Contato>, IContatoService
     {
         #region Construtor
         private readonly IContatoRepository _repositoryContato;

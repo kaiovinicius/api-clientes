@@ -8,7 +8,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
 
     \c db_enderecos
     
-    CREATE TABLE "Endereco"(
+    CREATE TABLE "Endereco" (
 	id serial NOT NULL,
 	cep VARCHAR (8) NOT NULL,
 	logradouro VARCHAR (255) NOT NULL,
@@ -31,12 +31,12 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
 
 	CREATE TABLE "Contato" (
     id serial NOT NULL,
-    idCliente integer NOT NULL,
+    "idCliente" integer NOT NULL,
     ddd VARCHAR (2) NOT NULL,
     numero VARCHAR (20) NOT NULL,
     email VARCHAR (50) NOT NULL,
     CONSTRAINT "Contato_PK" PRIMARY KEY (id),
-    CONSTRAINT "FK_id_Cliente" FOREIGN KEY (idCliente)
+    CONSTRAINT "FK_id_Cliente" FOREIGN KEY ("idCliente")
         REFERENCES "Cliente" (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION

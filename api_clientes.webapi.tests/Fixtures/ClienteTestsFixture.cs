@@ -1,4 +1,4 @@
-﻿using api_clientes.application.Models;
+﻿using api_clientes.application.DTO.Models;
 using api_clientes.webapi.tests.collections;
 using Bogus;
 using Bogus.DataSets;

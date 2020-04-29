@@ -1,5 +1,5 @@
 ﻿using api_clientes.application.Abstracts;
-using api_clientes.application.Models;
+using api_clientes.application.DTO.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace api_clientes.Data_Acess.Abstracts.Repositories
+namespace api_clientes.domain.Abstracts.Services
 {
-    public interface IRepositoryBase<TEntity> where TEntity : class
+    public interface IServiceBaseEndereco<TEntity> where TEntity : class
     {
         #region Listar
         List<TEntity> Listar();

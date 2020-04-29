@@ -1,13 +1,13 @@
-﻿using api_clientes.Entities;
+﻿using api_clientes.domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace api_clientes.data
 {
-    public class Ma9_ClientesContext : DbContext
+    public class ClientesContext : DbContext
     {
-        public Ma9_ClientesContext() { }
+        public ClientesContext() { }
 
-        public Ma9_ClientesContext(DbContextOptions<Ma9_ClientesContext> options) : base(options) { }
+        public ClientesContext(DbContextOptions<ClientesContext> options) : base(options) { }
 
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Contato> Contatos { get; set; }
@@ -16,6 +16,7 @@ namespace api_clientes.data
         {
             base.OnModelCreating(builder);
 
+            #region Cliente
             // Primary Key
             builder.Entity<Cliente>().Property(t => t.Id)
                 .ValueGeneratedOnAdd();
@@ -42,13 +43,12 @@ namespace api_clientes.data
             builder.Entity<Cliente>().Property(t => t.Cpf).HasColumnName("cpf");
             builder.Entity<Cliente>().Property(t => t.Sexo).HasColumnName("sexo");
 
-            //Relationships
+            //Relationships 
+            #endregion
 
-
-
-
+            #region Contato
             // Primary Key
-            builder.Entity<Cliente>().Property(t => t.Id)
+            builder.Entity<Contato>().Property(t => t.Id)
                 .ValueGeneratedOnAdd();
 
             // Properties
@@ -77,7 +77,8 @@ namespace api_clientes.data
                 entity.HasOne(c => c.Cliente)
                       .WithOne(c => c.Contato)
                       .HasForeignKey<Contato>(c => c.IdCliente);
-            });
+            }); 
+            #endregion
         }
     }
 }

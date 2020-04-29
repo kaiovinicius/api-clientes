@@ -1,5 +1,5 @@
 ﻿using api_clientes.application.Abstracts;
-using api_clientes.application.Models;
+using api_clientes.application.DTO.Models;
 using api_clientes.webapi.Controllers;
 using api_clientes.webapi.tests.collections;
 using api_clientes.webapi.tests.fixtures;

@@ -21,8 +21,11 @@ namespace api_clientes.webapi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Ma9_ClientesContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ClientesContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("Clientes_DbConnection")));
+            
+            services.AddDbContext<EnderecosContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("Enderecos_DbConnection")));
 
             services.AddControllersWithViews();
         }

@@ -1,6 +1,6 @@
-﻿using api_clientes.application.Models;
+﻿using api_clientes.application.DTO.Models;
 using api_clientes.cross.cutting.Abstracts;
-using api_clientes.Entities;
+using api_clientes.domain.Entities;
 using System.Collections.Generic;
 
 namespace api_clientes.cross.cutting.Map
@@ -48,7 +48,7 @@ namespace api_clientes.cross.cutting.Map
 
         }
 
-        public IEnumerable<ClienteDTO> ListClienteToDTO(IEnumerable<Cliente> clientes)
+        public IEnumerable<ClienteDTO> ListEntityToListDTO(IEnumerable<Cliente> clientes)
         {
             foreach (var cliente in clientes)
             {

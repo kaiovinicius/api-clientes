@@ -3,7 +3,7 @@ using api_clientes.domain.Entities;
 
 namespace api_clientes.domain.core.Abstracts.Services
 {
-    public interface IContatoService : IServiceBaseCliente<Contato>
+    public interface IEnderecoService : IServiceBaseEndereco<Endereco>
     {
     }
 }

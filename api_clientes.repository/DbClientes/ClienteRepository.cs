@@ -1,15 +1,16 @@
 ﻿using api_clientes.data;
-using api_clientes.Data_Acess.Abstracts.Repositories;
-using api_clientes.Entities;
+using api_clientes.domain.core.Abstracts.Repositories.DbClientes;
+using api_clientes.domain.Entities;
+using api_clientes.repository.DbClientes;
 
 namespace api_clientes.repository
 {
-    public class ClienteRepository : RepositoryBase<Cliente>, IClienteRepository
+    public class ClienteRepository : RepositoryBaseClientes<Cliente>, IClienteRepository
     {
         #region Construtor
-        private readonly Ma9_ClientesContext _context;
+        private readonly ClientesContext _context;
 
-        public ClienteRepository(Ma9_ClientesContext context) : base(context)
+        public ClienteRepository(ClientesContext context) : base(context)
         {
             _context = context;
         }
