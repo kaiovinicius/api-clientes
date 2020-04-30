@@ -6,6 +6,7 @@ namespace api_clientes.domain.Entities
     {
         [Key]
         public int? Id { get; set; }
+        public int? IdCliente { get; set; }
         public string Cep { get; set; }
         public string Logradouro { get; set; }
         public string Bairro { get; set; }

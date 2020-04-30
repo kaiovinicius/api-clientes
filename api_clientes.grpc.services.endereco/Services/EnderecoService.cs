@@ -1,12 +1,12 @@
 ﻿using api_clientes.domain.core.Abstracts.Repositories.DbEnderecos;
-using api_clientes.grpc.services.cliente.Protos;
+using api_clientes.grpc.services.endereco.Protos;
 using Grpc.Core;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using static api_clientes.grpc.services.cliente.Protos.EnderecoService;
+using static api_clientes.grpc.services.endereco.Protos.EnderecoService;
 
-namespace api_clientes.grpc.services.cliente.Services
+namespace api_clientes.grpc.services.endereco.Services
 {
     public class EnderecoService : EnderecoServiceBase
     {
@@ -26,17 +26,18 @@ namespace api_clientes.grpc.services.cliente.Services
         /// <param name="request"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public override Task<Enderecos> Listar(Protos.Empty request, ServerCallContext context)
+        public override Task<EnderecosGet> Listar(Empty request, ServerCallContext context)
         {
-            Enderecos protos = new Enderecos();
+            EnderecosGet protos = new EnderecosGet();
 
             var enderecos = _repositoryEndereco.Listar().ToList();
 
             foreach (var endereco in enderecos)
             {
-                var proto = new Protos.Endereco
+                var proto = new Protos.EnderecoGet
                 {
                     Id = endereco.Id.Value,
+                    IdCliente = endereco.IdCliente.Value,
                     Cep = endereco.Cep,
                     Logradouro = endereco.Logradouro,
                     Cidade = endereco.Cidade,
@@ -58,13 +59,14 @@ namespace api_clientes.grpc.services.cliente.Services
         /// <param name="request"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public override Task<Protos.Endereco> Obter(Request request, ServerCallContext context)
+        public override Task<EnderecoGet> Obter(Request request, ServerCallContext context)
         {
             var endereco = _repositoryEndereco.Obter(request.Id);
 
-            return Task.FromResult(new Protos.Endereco
+            return Task.FromResult(new Protos.EnderecoGet
             {
                 Id = endereco.Id.Value,
+                IdCliente = endereco.IdCliente.Value,
                 Cep = endereco.Cep,
                 Logradouro = endereco.Logradouro,
                 Cidade = endereco.Cidade,
@@ -81,11 +83,11 @@ namespace api_clientes.grpc.services.cliente.Services
         /// <param name="request"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public override Task<Empty> Inserir(Protos.Endereco request, ServerCallContext context)
+        public override Task<Empty> Inserir(EnderecoPost request, ServerCallContext context)
         {
             var endereco = new domain.Entities.Endereco
-            {
-                Id = request.Id,
+            {   
+                IdCliente = request.IdCliente,
                 Cep = request.Cep,
                 Logradouro = request.Logradouro,
                 Bairro = request.Bairro,
@@ -106,11 +108,12 @@ namespace api_clientes.grpc.services.cliente.Services
         /// <param name="request"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public override Task<Empty> Alterar(Protos.Endereco request, ServerCallContext context)
+        public override Task<Empty> Alterar(EnderecoPut request, ServerCallContext context)
         {
             var endereco = new domain.Entities.Endereco
             {
                 Id = request.Id,
+                IdCliente = request.IdCliente,
                 Cep = request.Cep,
                 Logradouro = request.Logradouro,
                 Bairro = request.Bairro,
@@ -146,7 +149,7 @@ namespace api_clientes.grpc.services.cliente.Services
             _repositoryEndereco.Excluir(request.Id);
 
             return Task.FromResult(new Empty());
-        } 
+        }
         #endregion
     }
 }

@@ -1,6 +1,6 @@
 ﻿using api_clientes.cross.cutting.IOC;
 using api_clientes.data;
-using api_clientes.grpc.services.cliente.Services;
+using api_clientes.grpc.services.endereco.Services;
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 
 namespace api_clientes.grpc.services.cliente
 {
@@ -25,8 +26,8 @@ namespace api_clientes.grpc.services.cliente
         {
             services.AddGrpc();
 
-            services.AddDbContext<ClientesContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("Clientes_DbConnection")));
+            services.AddDbContext<EnderecosContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("Enderecos_DbConnection")));
         }
 
         public void ConfigureContainer(ContainerBuilder Builder)
@@ -45,8 +46,7 @@ namespace api_clientes.grpc.services.cliente
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<ClienteService>();
-                endpoints.MapGrpcService<ContatoService>();
+                endpoints.MapGrpcService<EnderecoService>();
 
                 endpoints.MapGet("/", async context =>
                 {

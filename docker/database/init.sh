@@ -22,6 +22,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
 
     CREATE TABLE "Cliente" (
     id serial NOT NULL,
+    idEndereco integer NULL,
     nome VARCHAR (100) NOT NULL,
     sobrenome VARCHAR (100) NOT NULL,
     cpf VARCHAR (100) NOT NULL,

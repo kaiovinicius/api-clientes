@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+option csharp_namespace = "api_clientes.grpc.services.endereco.Protos";
+
+package endereco;
+
+service EnderecoService {
+
+    rpc Listar (Empty) returns (EnderecosGet);
+	rpc Obter (Request) returns (EnderecoGet);
+    rpc Inserir (EnderecoPost) returns (Empty);
+    rpc Alterar (EnderecoPut) returns (Empty);
+    rpc Excluir (Request) returns (Empty);
+}
+
+message Empty {
+
+}
+
+message Request {
+
+  int32 Id = 1;
+
+}
+
+message EnderecoPost {
+  
+  int32 IdCliente = 1;
+  string Cep = 2;
+  string Logradouro = 3;
+  string Bairro = 4;
+  string Cidade = 5;
+  string Estado = 6;
+
+}
+
+message EnderecoPut {
+  
+  int32 Id = 1;
+  int32 IdCliente = 2;
+  string Cep = 3;
+  string Logradouro = 4;
+  string Bairro = 5;
+  string Cidade = 6;
+  string Estado = 7;
+
+}
+
+message EnderecoGet {
+  
+  int32 Id = 1;
+  int32 IdCliente = 2;
+  string Cep = 3;
+  string Logradouro = 4;
+  string Bairro = 5;
+  string Cidade = 6;
+  string Estado = 7;
+
+}	
+
+message EnderecosGet {
+
+  repeated EnderecoGet items = 1;
+
+}	
