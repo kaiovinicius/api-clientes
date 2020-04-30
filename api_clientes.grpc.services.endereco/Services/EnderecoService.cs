@@ -37,7 +37,6 @@ namespace api_clientes.grpc.services.endereco.Services
                 var proto = new Protos.EnderecoGet
                 {
                     Id = endereco.Id.Value,
-                    IdCliente = endereco.IdCliente.Value,
                     Cep = endereco.Cep,
                     Logradouro = endereco.Logradouro,
                     Cidade = endereco.Cidade,
@@ -66,7 +65,6 @@ namespace api_clientes.grpc.services.endereco.Services
             return Task.FromResult(new Protos.EnderecoGet
             {
                 Id = endereco.Id.Value,
-                IdCliente = endereco.IdCliente.Value,
                 Cep = endereco.Cep,
                 Logradouro = endereco.Logradouro,
                 Cidade = endereco.Cidade,
@@ -87,7 +85,6 @@ namespace api_clientes.grpc.services.endereco.Services
         {
             var endereco = new domain.Entities.Endereco
             {   
-                IdCliente = request.IdCliente,
                 Cep = request.Cep,
                 Logradouro = request.Logradouro,
                 Bairro = request.Bairro,
@@ -113,7 +110,6 @@ namespace api_clientes.grpc.services.endereco.Services
             var endereco = new domain.Entities.Endereco
             {
                 Id = request.Id,
-                IdCliente = request.IdCliente,
                 Cep = request.Cep,
                 Logradouro = request.Logradouro,
                 Bairro = request.Bairro,

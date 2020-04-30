@@ -5,6 +5,7 @@ namespace api_clientes.application.DTO.Models
     public partial class ClienteDTO
     {
         public int? Id { get; set; }
+        public int? IdEndereco { get; set; }
         [Required]
         public string Nome { get; set; }
         [Required]

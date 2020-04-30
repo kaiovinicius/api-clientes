@@ -25,30 +25,33 @@ message RequestCliente {
 
 message ClientePost {
   
-  string Nome = 1;
-  string Sobrenome = 2;
-  string Cpf = 3;
-  string Sexo = 4;
+  int32 IdEndereco = 1;
+  string Nome = 2;
+  string Sobrenome = 3;
+  string Cpf = 4;
+  string Sexo = 5;
 
 }	
 
 message ClientePut {
   
   int32  Id = 1;
-  string Nome = 2;
-  string Sobrenome = 3;
-  string Cpf = 4;
-  string Sexo = 5;
+  int32 IdEndereco = 2;
+  string Nome = 3;
+  string Sobrenome = 4;
+  string Cpf = 5;
+  string Sexo = 6;
 
 }	
 
 message ClienteGet {
   
   int32  Id = 1;
-  string Nome = 2;
-  string Sobrenome = 3;
-  string Cpf = 4;
-  string Sexo = 5;
+  int32 IdEndereco = 2;
+  string Nome = 3;
+  string Sobrenome = 4;
+  string Cpf = 5;
+  string Sexo = 6;
 
 }	
 

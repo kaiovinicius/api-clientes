@@ -38,6 +38,7 @@ namespace api_clientes.data
             // Table & Column Mappings
             builder.Entity<Cliente>().ToTable("Cliente");
             builder.Entity<Cliente>().Property(t => t.Id).HasColumnName("id");
+            builder.Entity<Cliente>().Property(t => t.IdEndereco).HasColumnName("idEndereco");
             builder.Entity<Cliente>().Property(t => t.Nome).HasColumnName("nome");
             builder.Entity<Cliente>().Property(t => t.Sobrenome).HasColumnName("sobrenome");
             builder.Entity<Cliente>().Property(t => t.Cpf).HasColumnName("cpf");

@@ -16,6 +16,7 @@ namespace api_clientes.cross.cutting.Map
                 Cliente cliente = new Cliente
                 {
                     Id = clienteDTO.Id,
+                    IdEndereco = clienteDTO.IdEndereco,
                     Nome = clienteDTO.Nome,
                     Sobrenome = clienteDTO.Sobrenome,
                     Cpf = clienteDTO.Cpf,
@@ -35,6 +36,7 @@ namespace api_clientes.cross.cutting.Map
                 ClienteDTO clienteDTO = new ClienteDTO
                 {
                     Id = cliente.Id,
+                    IdEndereco = cliente.IdEndereco,
                     Nome = cliente.Nome,
                     Sobrenome = cliente.Sobrenome,
                     Cpf = cliente.Cpf,
@@ -55,6 +57,7 @@ namespace api_clientes.cross.cutting.Map
                 ClienteDTO clienteDTO = new ClienteDTO
                 {
                     Id = cliente.Id,
+                    IdEndereco = cliente.IdEndereco,
                     Nome = cliente.Nome,
                     Sobrenome = cliente.Sobrenome,
                     Cpf = cliente.Cpf,

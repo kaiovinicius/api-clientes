@@ -34,9 +34,10 @@ namespace api_clientes.grpc.services.cliente.Services
 
             foreach (var cliente in clientes)
             {
-                var proto = new Protos.ClienteGet
+                var proto = new ClienteGet
                 {
                     Id = cliente.Id.Value,
+                    IdEndereco = cliente.IdEndereco.Value,
                     Nome = cliente.Nome,
                     Sobrenome = cliente.Sobrenome,
                     Cpf = cliente.Cpf,
@@ -64,6 +65,7 @@ namespace api_clientes.grpc.services.cliente.Services
             return Task.FromResult(new Protos.ClienteGet
             {
                 Id = cliente.Id.Value,
+                IdEndereco = cliente.IdEndereco.Value,
                 Nome = cliente.Nome,
                 Sobrenome = cliente.Sobrenome,
                 Cpf = cliente.Cpf,
@@ -83,6 +85,7 @@ namespace api_clientes.grpc.services.cliente.Services
         {
             var cliente = new domain.Entities.Cliente
             {
+                IdEndereco = request.IdEndereco,
                 Nome = request.Nome,
                 Sobrenome = request.Sobrenome,
                 Cpf = request.Cpf,
@@ -107,6 +110,7 @@ namespace api_clientes.grpc.services.cliente.Services
             var cliente = new domain.Entities.Cliente
             {
                 Id = request.Id,
+                IdEndereco = request.IdEndereco,
                 Nome = request.Nome,
                 Sobrenome = request.Sobrenome,
                 Cpf = request.Cpf,

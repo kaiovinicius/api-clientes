@@ -25,7 +25,17 @@ message Request {
 
 message EnderecoPost {
   
-  int32 IdCliente = 1;
+  string Cep = 1;
+  string Logradouro = 2;
+  string Bairro = 3;
+  string Cidade = 4;
+  string Estado = 5;
+
+}
+
+message EnderecoPut {
+  
+  int32 Id = 1;
   string Cep = 2;
   string Logradouro = 3;
   string Bairro = 4;
@@ -34,27 +44,14 @@ message EnderecoPost {
 
 }
 
-message EnderecoPut {
-  
-  int32 Id = 1;
-  int32 IdCliente = 2;
-  string Cep = 3;
-  string Logradouro = 4;
-  string Bairro = 5;
-  string Cidade = 6;
-  string Estado = 7;
-
-}
-
 message EnderecoGet {
   
   int32 Id = 1;
-  int32 IdCliente = 2;
-  string Cep = 3;
-  string Logradouro = 4;
-  string Bairro = 5;
-  string Cidade = 6;
-  string Estado = 7;
+  string Cep = 2;
+  string Logradouro = 3;
+  string Bairro = 4;
+  string Cidade = 5;
+  string Estado = 6;
 
 }	
 
