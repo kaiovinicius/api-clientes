@@ -13,6 +13,15 @@ namespace api_clientes.repository
         public EnderecoRepository(EnderecosContext context) : base(context)
         {
             this._context = context;
+        }
+        #endregion
+
+        #region Alterar
+        public override void Alterar(Endereco entidade)
+        {
+            this.DetachedLocal(c => c.Id == entidade.Id);
+
+            base.Alterar(entidade);
         } 
         #endregion
     }
