@@ -1,0 +1,73 @@
+version: '3.5'
+
+networks:
+  network_api_clientes:
+    driver: bridge
+
+volumes:
+  volume_postgres:
+  volume_pgadmin: 
+
+services:
+
+    service_postgres:
+        container_name: cnt-postgressql
+        image: postgres:alpine
+        ports:
+            - '5432:5432'
+        restart: always
+        volumes:
+            - volume_postgres:/var/lib/postgresql/data
+            - ./docker/database/init.sh :/docker-entrypoint-initdb.d/init.sh
+        networks:
+            - network_api_clientes
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            CONFIGS: "listen_addresses:'*'"
+
+    service_pgadmin:
+        container_name: cnt-pgadmin
+        image: dpage/pgadmin4
+        ports:
+            - '16543:80'
+        volumes:
+            - 'volume_pgadmin:/root/.pgadmin'
+        networks:
+            - network_api_clientes
+        environment:
+            PGADMIN_DEFAULT_EMAIL: '${PGADMIN_DEFAULT_EMAIL:-admin}'
+            PGADMIN_DEFAULT_PASSWORD: '${PGADMIN_DEFAULT_PASSWORD:-admin}'
+        depends_on:
+            - service_postgres
+        restart: unless-stopped
+
+    service_web-api_clientes:
+        container_name: cnt-webapi
+        image: 'api_clientes:latest'
+        links:
+            - service_postgres
+        depends_on:
+            - service_postgres
+        build:
+            context: .
+            dockerfile: Dockerfile-webapi
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+        networks:
+            - network_api_clientes
+
+    service_web:
+        container_name: cnt-web
+        image: 'nginx:alpine'
+        ports:
+            - '80:80'
+        restart: always
+        networks:
+            - network_api_clientes
+        links:
+            - service_web-api_clientes:service_web-api_clientes
+        depends_on:
+            - service_web-api_clientes
+        volumes:
+            - './docker/nginx/nginx-webapi.conf:/etc/nginx/conf.d/default.conf'

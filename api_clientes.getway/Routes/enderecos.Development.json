@@ -1,0 +1,66 @@
+﻿{
+  "ReRoutes": [
+    {
+      "UpstreamPathTemplate": "/enderecos",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/Endereco.EnderecoService/Listar",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/enderecos/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/Endereco.EnderecoService/Obter",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/enderecos",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/Endereco.EnderecoService/Inserir",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/enderecos",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "DownstreamPathTemplate": "/Endereco.EnderecoService/Alterar",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/enderecos",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamPathTemplate": "/Endereco.EnderecoService/Excluir",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+        "Host": "localhost",
+          "Port": 5003
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+  }
+}

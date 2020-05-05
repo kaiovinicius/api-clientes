@@ -17,6 +17,7 @@ namespace api_clientes.grpc.services.cliente
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<Startup>();
-            });
+            }); 
+
     }
 }

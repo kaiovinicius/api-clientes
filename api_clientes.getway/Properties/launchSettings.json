@@ -1,9 +1,8 @@
 ﻿{
   "profiles": {
-    "api_clientes.grpc.services.cliente": {
+    "api_clientes.getway": {
       "commandName": "Project",
-      "launchBrowser": false,
-      "applicationUrl": "http://localhost:5002",
+      "applicationUrl": "http://localhost:5000/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

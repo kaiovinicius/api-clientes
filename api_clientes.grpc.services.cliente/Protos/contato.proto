@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "api_clientes.grpc.services.cliente.Protos";
 
-package contato;
+package Contato;
 
 service ContatoService {
 
