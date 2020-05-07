@@ -1,19 +1,19 @@
 ﻿using api_clientes.application.Abstracts;
 using api_clientes.application.DTO.Models;
-using Grpc.Net.Client;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 
-namespace api_clientes.webapi.Controllers
+namespace api_clientes.getway.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ClientesController : ControllerBase
     {
-        #region Construtor
+        #region Variáveis
         private readonly IClienteApplicationService applicationServiceCliente;
-        
+        #endregion
+
+        #region Construtor
         public ClientesController(IClienteApplicationService applicationServiceCliente)
         {
             this.applicationServiceCliente = applicationServiceCliente;
@@ -44,7 +44,7 @@ namespace api_clientes.webapi.Controllers
         public ClienteDTO Obter(int id)
         {
             var cliente = applicationServiceCliente.Obter(id);
-            
+
             return cliente;
         }
         #endregion
@@ -100,9 +100,9 @@ namespace api_clientes.webapi.Controllers
         {
 
             applicationServiceCliente.Excluir(id);
-                
+
             return Ok("Cliente Removido com sucesso!");
-        } 
+        }
         #endregion
     }
 }

@@ -25,6 +25,7 @@ namespace api_clientes.grpc.services.cliente
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+            services.AddSingleton<EnderecoService>();
 
             services.AddDbContext<EnderecosContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("Enderecos_DbConnection")));

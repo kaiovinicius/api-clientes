@@ -27,56 +27,55 @@ services:
             POSTGRES_PASSWORD: postgres
             CONFIGS: "listen_addresses:'*'"
 
-    # service_pgadmin:
-    #     container_name: cnt-pgadmin
-    #     image: dpage/pgadmin4
+    service_pgadmin:
+        container_name: cnt-pgadmin
+        image: dpage/pgadmin4
+        ports:
+            - '16543:80'
+        volumes:
+            - 'volume_pgadmin:/root/.pgadmin'
+        networks:
+            - mynetwork
+        environment:
+            PGADMIN_DEFAULT_EMAIL: '${PGADMIN_DEFAULT_EMAIL:-admin}'
+            PGADMIN_DEFAULT_PASSWORD: '${PGADMIN_DEFAULT_PASSWORD:-admin}'
+        depends_on:
+            - service_postgres
+        restart: unless-stopped
+
+    # service_api_getway:
+    #     container_name: cnt-api-getway
+    #     image: 'api_getway:latest'
     #     ports:
-    #         - '16543:80'
-    #     volumes:
-    #         - 'volume_pgadmin:/root/.pgadmin'
-    #     networks:
-    #         - mynetwork
-    #     environment:
-    #         PGADMIN_DEFAULT_EMAIL: '${PGADMIN_DEFAULT_EMAIL:-admin}'
-    #         PGADMIN_DEFAULT_PASSWORD: '${PGADMIN_DEFAULT_PASSWORD:-admin}'
+    #         - '5000:80'
     #     depends_on:
     #         - service_postgres
-    #     restart: unless-stopped
+    #         - service_grpc_clientes
+    #         #- service_grpc_enderecos
+    #     build:
+    #         context: .
+    #         dockerfile: Dockerfile-api-getway
+    #     environment:
+    #         - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+    #     networks:
+    #         - mynetwork
 
-    service_api_getway:
-        container_name: cnt-api-getway
-        image: 'api_getway:latest'
-        ports:
-            - '5000:80'
-        depends_on:
-            - service_postgres
-            - service_grpc_clientes
-            #- service_grpc_enderecos
-        build:
-            context: .
-            dockerfile: Dockerfile-api-getway
-        environment:
-            - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
-        networks:
-            - mynetwork
-
-    service_grpc_clientes:
-        container_name: cnt-grpc-clientes
-        image: 'grpc_clientes:latest'
-        ports:
-            - '5002:80'
-            #- '50022:80'
-        links:
-            - service_postgres
-        depends_on:
-            - service_postgres
-        build:
-            context: .
-            dockerfile: Dockerfile-grpc-clientes
-        environment:
-            - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
-        networks:
-            - mynetwork
+    # service_grpc_clientes:
+    #     container_name: cnt-grpc-clientes
+    #     image: 'grpc_clientes:latest'
+    #     ports:
+    #         - '5002:80'
+    #     links:
+    #         - service_postgres
+    #     depends_on:
+    #         - service_postgres
+    #     build:
+    #         context: .
+    #         dockerfile: Dockerfile-grpc-clientes
+    #     environment:
+    #         - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+    #     networks:
+    #         - mynetwork
 
     # service_grpc_enderecos:
     #     container_name: cnt-grpc-enderecos

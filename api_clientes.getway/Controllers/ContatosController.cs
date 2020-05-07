@@ -1,36 +1,34 @@
 ﻿using api_clientes.application.Abstracts;
 using api_clientes.application.DTO.Models;
-using Grpc.Net.Client;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 
-namespace api_clientes.webapi.Controllers
+namespace api_clientes.getway.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientesController : ControllerBase
+    public class ContatosController : ControllerBase
     {
         #region Construtor
-        private readonly IClienteApplicationService applicationServiceCliente;
-        
-        public ClientesController(IClienteApplicationService applicationServiceCliente)
+        private readonly IContatoApplicationService applicationServiceContato;
+
+        public ContatosController(IContatoApplicationService applicationServiceContato)
         {
-            this.applicationServiceCliente = applicationServiceCliente;
+            this.applicationServiceContato = applicationServiceContato;
         }
         #endregion
 
         #region Listar
         /// <summary>
-        /// ListarTodos
+        /// Listar
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public List<ClienteDTO> Listar()
+        public List<ContatoDTO> Listar()
         {
-            var clientes = applicationServiceCliente.Listar();
+            var contatos = applicationServiceContato.Listar();
 
-            return new List<ClienteDTO>(clientes);
+            return new List<ContatoDTO>(contatos);
         }
         #endregion
 
@@ -41,11 +39,11 @@ namespace api_clientes.webapi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public ClienteDTO Obter(int id)
+        public ContatoDTO Obter(int id)
         {
-            var cliente = applicationServiceCliente.Obter(id);
-            
-            return cliente;
+            var contato = applicationServiceContato.Obter(id);
+
+            return contato;
         }
         #endregion
 
@@ -53,19 +51,19 @@ namespace api_clientes.webapi.Controllers
         /// <summary>
         /// Inserir
         /// </summary>
-        /// <param name="clienteDTO"></param>
+        /// <param name="contatoDTO"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Inserir([FromBody] ClienteDTO clienteDTO)
+        public ActionResult Inserir([FromBody] ContatoDTO contatoDTO)
         {
             if (!ModelState.IsValid)
             {
                 return NotFound();
             }
 
-            applicationServiceCliente.Inserir(clienteDTO);
+            applicationServiceContato.Inserir(contatoDTO);
 
-            return Ok("Cliente Cadastrado com sucesso!");
+            return Ok("Contato Cadastrado com sucesso!");
         }
         #endregion
 
@@ -73,19 +71,20 @@ namespace api_clientes.webapi.Controllers
         /// <summary>
         /// Alterar
         /// </summary>
-        /// <param name="clienteDTO"></param>
+        /// <param name="contatoDTO"></param>
         /// <returns></returns>
         [HttpPut]
-        public ActionResult Alterar([FromBody] ClienteDTO clienteDTO)
+        public ActionResult Alterar([FromBody] ContatoDTO contatoDTO)
         {
             if (!ModelState.IsValid)
             {
                 return NotFound();
             }
 
-            applicationServiceCliente.Alterar(clienteDTO);
+            applicationServiceContato.Alterar(contatoDTO);
 
-            return Ok("Cliente Alterado com sucesso!");
+            return Ok("Contato Alterado com sucesso!");
+
         }
         #endregion
 
@@ -98,11 +97,10 @@ namespace api_clientes.webapi.Controllers
         [HttpDelete("{id}")]
         public ActionResult Excluir(int id)
         {
+            applicationServiceContato.Excluir(id);
 
-            applicationServiceCliente.Excluir(id);
-                
-            return Ok("Cliente Removido com sucesso!");
-        } 
+            return Ok("Contato Removido com sucesso!");
+        }
         #endregion
     }
 }

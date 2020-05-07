@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\api_clientes.application.DTO\api_clientes.application.DTO.csproj" />
+    <ProjectReference Include="..\api_clientes.application.Proto\api_clientes.application.Proto.csproj" />
     <ProjectReference Include="..\api_clientes.domain\api_clientes.domain.csproj" />
   </ItemGroup>
 

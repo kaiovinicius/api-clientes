@@ -24,6 +24,8 @@ namespace api_clientes.grpc.services.cliente
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+            services.AddSingleton<ClienteService>();
+            services.AddSingleton<ContatoService>();
 
             services.AddDbContext<ClientesContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("Clientes_DbConnection")));

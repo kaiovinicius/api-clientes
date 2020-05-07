@@ -18,6 +18,5 @@ namespace api_clientes.grpc.services.cliente
             {
                 webBuilder.UseStartup<Startup>();
             }); 
-
     }
 }

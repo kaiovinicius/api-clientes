@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+option csharp_namespace = "ContatoService";
+
+package Contato;
+
+service ContatoService {
+
+    rpc Listar (EmptyContato) returns (ContatosGet);
+	rpc Obter (RequestContato) returns (ContatoGet);
+    rpc Inserir (ContatoPost) returns (EmptyContato);
+    rpc Alterar (ContatoPut) returns (EmptyContato);
+    rpc Excluir (RequestContato) returns (EmptyContato);
+}
+
+message EmptyContato {
+
+}
+
+message RequestContato {
+
+  int32 Id = 1;
+
+}
+
+message ContatoPost {
+  
+  int32 IdCliente = 1;
+  string Ddd = 2;
+  string Numero = 3;
+  string Email = 4;
+
+}	
+
+message ContatoPut {
+  
+  int32 Id = 1;
+  int32 IdCliente = 2;
+  string Ddd = 3;
+  string Numero = 4;
+  string Email = 5;
+
+}	
+
+message ContatoGet {
+  
+  int32 Id = 1;
+  int32 IdCliente = 2;
+  string Ddd = 3;
+  string Numero = 4;
+  string Email = 5;
+
+}	
+
+message ContatosGet {
+
+  repeated ContatoGet items = 1;
+
+}
