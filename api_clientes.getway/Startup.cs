@@ -34,17 +34,17 @@ namespace api_clientes.getway
 
             services.AddGrpcClient<ClienteService.ClienteServiceClient>(o =>
             {
-                o.Address = new Uri("https://localhost:5001");
+                o.Address = new Uri("https://localhost:5002");
             });
 
             services.AddGrpcClient<ContatoService.ContatoServiceClient>(o =>
             {
-                o.Address = new Uri("https://localhost:5001");
+                o.Address = new Uri("https://localhost:5002");
             });
 
             services.AddGrpcClient<EnderecoService.EnderecoServiceClient>(o =>
             {
-                o.Address = new Uri("https://localhost:5002");
+                o.Address = new Uri("https://localhost:5003");
             });
         }
 

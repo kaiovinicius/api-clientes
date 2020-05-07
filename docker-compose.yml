@@ -27,21 +27,21 @@ services:
             POSTGRES_PASSWORD: postgres
             CONFIGS: "listen_addresses:'*'"
 
-    service_pgadmin:
-        container_name: cnt-pgadmin
-        image: dpage/pgadmin4
-        ports:
-            - '16543:80'
-        volumes:
-            - 'volume_pgadmin:/root/.pgadmin'
-        networks:
-            - mynetwork
-        environment:
-            PGADMIN_DEFAULT_EMAIL: '${PGADMIN_DEFAULT_EMAIL:-admin}'
-            PGADMIN_DEFAULT_PASSWORD: '${PGADMIN_DEFAULT_PASSWORD:-admin}'
-        depends_on:
-            - service_postgres
-        restart: unless-stopped
+    # service_pgadmin:
+    #     container_name: cnt-pgadmin
+    #     image: dpage/pgadmin4
+    #     ports:
+    #         - '16543:80'
+    #     volumes:
+    #         - 'volume_pgadmin:/root/.pgadmin'
+    #     networks:
+    #         - mynetwork
+    #     environment:
+    #         PGADMIN_DEFAULT_EMAIL: '${PGADMIN_DEFAULT_EMAIL:-admin}'
+    #         PGADMIN_DEFAULT_PASSWORD: '${PGADMIN_DEFAULT_PASSWORD:-admin}'
+    #     depends_on:
+    #         - service_postgres
+    #     restart: unless-stopped
 
     # service_api_getway:
     #     container_name: cnt-api-getway
