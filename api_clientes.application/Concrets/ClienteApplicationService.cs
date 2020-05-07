@@ -2,20 +2,24 @@
 using api_clientes.application.DTO.Models;
 using api_clientes.cross.cutting.Abstracts;
 using api_clientes.domain.core.Abstracts.Services;
+using api_clientes.grpc.services.cliente.Protos;
 using System.Collections.Generic;
 
 namespace api_clientes.application.Concrets
 {
     public class ClienteApplicationService : IClienteApplicationService
     {
-        #region Construtor
-        private readonly IClienteService _serviceCliente;
-        private readonly IMapperCliente _mapperCliente;
 
-        public ClienteApplicationService(IClienteService serviceCliente, IMapperCliente mapperCliente)
+        #region Variáveis
+        private readonly IMapperCliente _mapperCliente;
+        private readonly ClienteService.ClienteServiceClient _serviceGrpcCliente;
+        #endregion
+
+        #region Construtor
+        public ClienteApplicationService(IClienteService serviceCliente, IMapperCliente mapperCliente, ClienteService.ClienteServiceClient serviceGrpcCliente)
         {
             this._mapperCliente = mapperCliente;
-            this._serviceCliente = serviceCliente;
+            this._serviceGrpcCliente = serviceGrpcCliente;
         }
         #endregion
 
@@ -26,9 +30,9 @@ namespace api_clientes.application.Concrets
         /// <returns></returns>
         public IEnumerable<ClienteDTO> Listar()
         {
-            var clientes = _serviceCliente.Listar();
+            var clientes = _serviceGrpcCliente.Listar(new EmptyCliente { });
 
-            return _mapperCliente.ListEntityToListDTO(clientes);
+            return _mapperCliente.ListProtoToListDTO(clientes.Items);
         }
         #endregion
 
@@ -40,9 +44,9 @@ namespace api_clientes.application.Concrets
         /// <returns></returns>
         public ClienteDTO Obter(int? id)
         {
-            var cliente = _serviceCliente.Obter(id);
+            var cliente = _serviceGrpcCliente.Obter(new RequestCliente { Id = id.Value });
 
-            return _mapperCliente.EntityToDTO(cliente);
+            return _mapperCliente.ProtoToDTO(cliente);
         }
         #endregion
 
@@ -53,8 +57,18 @@ namespace api_clientes.application.Concrets
         /// <param name="clienteDTO"></param>
         public void Inserir(ClienteDTO clienteDTO)
         {
-            var cliente = _mapperCliente.DTOToEntity(clienteDTO);
-            _serviceCliente.Inserir(cliente);
+            var proto = _mapperCliente.DTOToProto(clienteDTO);
+
+            var cliente = new ClientePost
+            {
+                IdEndereco = proto.IdEndereco,
+                Nome = proto.Nome,
+                Sobrenome = proto.Sobrenome,
+                Cpf = proto.Cpf,
+                Sexo = proto.Sexo.ToString()
+            };
+
+            _serviceGrpcCliente.Inserir(cliente);
         }
         #endregion
 
@@ -65,9 +79,19 @@ namespace api_clientes.application.Concrets
         /// <param name="clienteDTO"></param>
         public void Alterar(ClienteDTO clienteDTO)
         {
-            var cliente = _mapperCliente.DTOToEntity(clienteDTO);
+            var proto = _mapperCliente.DTOToProto(clienteDTO);
 
-            _serviceCliente.Alterar(cliente);
+            var cliente = new ClientePut
+            {   
+                Id = clienteDTO.Id.Value,
+                IdEndereco = proto.IdEndereco,
+                Nome = proto.Nome,
+                Sobrenome = proto.Sobrenome,
+                Cpf = proto.Cpf,
+                Sexo = proto.Sexo.ToString()
+            };
+
+            _serviceGrpcCliente.Alterar(cliente);
         }
         #endregion
 
@@ -78,7 +102,7 @@ namespace api_clientes.application.Concrets
         /// <param name="id"></param>
         public void Excluir(int? id)
         {
-            _serviceCliente.Excluir(id);
+            _serviceGrpcCliente.Excluir(new RequestCliente { Id = id.Value });
         }
         #endregion
     }

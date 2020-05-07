@@ -1,21 +1,25 @@
-﻿using api_clientes.application.DTO.Models;
+﻿using api_clientes.application.Abstracts;
+using api_clientes.application.DTO.Models;
 using api_clientes.cross.cutting.Abstracts;
-using api_clientes.domain.core.Abstracts.Services;
-using api_clientes.application.Abstracts;
+using api_clientes.grpc.services.endereco.Protos;
 using System.Collections.Generic;
 
 namespace api_clientes.application.Concrets
 {
     public class EnderecoApplicationService : IEnderecoApplicationService
     {
-        #region Construtor
-        private readonly IEnderecoService _serviceEndereco;
-        private readonly IMapperEndereco _mapperEndereco;
 
-        public EnderecoApplicationService(IEnderecoService serviceEndereco, IMapperEndereco mapperEndereco)
+        #region Variáveis
+        private readonly IMapperEndereco _mapperEndereco;
+        private readonly EnderecoService.EnderecoServiceClient _serviceGrpcEndereco;
+
+        #endregion
+
+        #region Construtor
+        public EnderecoApplicationService(EnderecoService.EnderecoServiceClient serviceGrpcEndereco, IMapperEndereco mapperEndereco)
         {
             this._mapperEndereco = mapperEndereco;
-            this._serviceEndereco = serviceEndereco;
+            this._serviceGrpcEndereco = serviceGrpcEndereco;
         }
         #endregion
 
@@ -26,9 +30,9 @@ namespace api_clientes.application.Concrets
         /// <returns></returns>
         public IEnumerable<EnderecoDTO> Listar()
         {
-            var enderecos = _serviceEndereco.Listar();
+            var enderecos = _serviceGrpcEndereco.Listar(new Empty { }).Items;
 
-            return _mapperEndereco.ListEntityToListDTO(enderecos);
+            return _mapperEndereco.ListProtoToListDTO(enderecos);
         }
         #endregion
 
@@ -40,9 +44,9 @@ namespace api_clientes.application.Concrets
         /// <returns></returns>
         public EnderecoDTO Obter(int? id)
         {
-            var endereco = _serviceEndereco.Obter(id);
+            var endereco = _serviceGrpcEndereco.Obter(new Request { Id = id.Value });
 
-            return _mapperEndereco.EntityToDTO(endereco);
+            return _mapperEndereco.ProtoToDTO(endereco);
         }
         #endregion
 
@@ -53,8 +57,18 @@ namespace api_clientes.application.Concrets
         /// <param name="enderecoDTO"></param>
         public void Inserir(EnderecoDTO enderecoDTO)
         {
-            var endereco = _mapperEndereco.DTOToEntity(enderecoDTO);
-            _serviceEndereco.Inserir(endereco);
+            var proto = _mapperEndereco.DTOToProto(enderecoDTO);
+
+            var endereco = new EnderecoPost
+            {
+                Cep = enderecoDTO.Cep,
+                Logradouro = enderecoDTO.Logradouro,
+                Bairro = enderecoDTO.Logradouro,
+                Cidade = enderecoDTO.Cidade,
+                Estado = enderecoDTO.Estado,
+            };
+
+            _serviceGrpcEndereco.Inserir(endereco);
         }
         #endregion
 
@@ -65,9 +79,19 @@ namespace api_clientes.application.Concrets
         /// <param name="enderecoDTO"></param>
         public void Alterar(EnderecoDTO enderecoDTO)
         {
-            var endereco = _mapperEndereco.DTOToEntity(enderecoDTO);
+            var proto = _mapperEndereco.DTOToEntity(enderecoDTO);
 
-            _serviceEndereco.Alterar(endereco);
+            var endereco = new EnderecoPut
+            {   
+                Id = enderecoDTO.Id.Value,
+                Cep = enderecoDTO.Cep,
+                Logradouro = enderecoDTO.Logradouro,
+                Bairro = enderecoDTO.Logradouro,
+                Cidade = enderecoDTO.Cidade,
+                Estado = enderecoDTO.Estado,
+            };
+
+            _serviceGrpcEndereco.Alterar(endereco);
         }
         #endregion
 
@@ -78,7 +102,7 @@ namespace api_clientes.application.Concrets
         /// <param name="id"></param>
         public void Excluir(int? id)
         {
-            _serviceEndereco.Excluir(id);
+            _serviceGrpcEndereco.Excluir(new Request { Id = id.Value});
         }
         #endregion
     }

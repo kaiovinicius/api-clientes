@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -8,13 +8,20 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.11.4" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.28.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.28.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\api_clientes.application.DTO\api_clientes.application.DTO.csproj" />
+    <ProjectReference Include="..\api_clientes.application.Proto\api_clientes.application.Proto.csproj" />
     <ProjectReference Include="..\api_clientes.cross.cutting\api_clientes.cross.cutting.csproj" />
     <ProjectReference Include="..\api_clientes.domain.core\api_clientes.domain.core.csproj" />
     <ProjectReference Include="..\api_clientes.domain\api_clientes.domain.csproj" />
   </ItemGroup>
-
+  
 </Project>

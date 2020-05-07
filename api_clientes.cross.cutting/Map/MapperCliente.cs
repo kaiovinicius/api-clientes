@@ -1,6 +1,7 @@
 ﻿using api_clientes.application.DTO.Models;
 using api_clientes.cross.cutting.Abstracts;
 using api_clientes.domain.Entities;
+using api_clientes.grpc.services.cliente.Protos;
 using System.Collections.Generic;
 
 namespace api_clientes.cross.cutting.Map
@@ -62,6 +63,65 @@ namespace api_clientes.cross.cutting.Map
                     Sobrenome = cliente.Sobrenome,
                     Cpf = cliente.Cpf,
                     Sexo = cliente.Sexo
+                };
+
+                clienteDTOs.Add(clienteDTO);
+            }
+
+            return clienteDTOs;
+        }
+
+        public ClienteDTO ProtoToDTO(ClienteGet proto)
+        {
+            if (proto != null)
+            {
+                ClienteDTO clienteDTO = new ClienteDTO
+                {
+                    Id = proto.Id,
+                    IdEndereco = proto.IdEndereco,
+                    Nome = proto.Nome,
+                    Sobrenome = proto.Sobrenome,
+                    Cpf = proto.Cpf,
+                    Sexo = proto.Sexo.ToCharArray()[0]
+                };
+
+                return clienteDTO;
+            }
+
+            return null;
+        }
+
+        public ClienteGet DTOToProto(ClienteDTO clienteDTO)
+        {
+            if (clienteDTO != null)
+            {
+                ClienteGet cliente = new ClienteGet
+                {
+                    IdEndereco = clienteDTO.IdEndereco.Value,
+                    Nome = clienteDTO.Nome,
+                    Sobrenome = clienteDTO.Sobrenome,
+                    Cpf = clienteDTO.Cpf,
+                    Sexo = clienteDTO.Sexo.ToString()
+                };
+
+                return cliente;
+            }
+
+            return null;
+        }
+
+        public IEnumerable<ClienteDTO> ListProtoToListDTO(IEnumerable<ClienteGet> clientes)
+        {
+            foreach (var cliente in clientes)
+            {
+                ClienteDTO clienteDTO = new ClienteDTO
+                {
+                    Id = cliente.Id,
+                    IdEndereco = cliente.IdEndereco,
+                    Nome = cliente.Nome,
+                    Sobrenome = cliente.Sobrenome,
+                    Cpf = cliente.Cpf,
+                    Sexo = cliente.Sexo.ToCharArray()[0]
                 };
 
                 clienteDTOs.Add(clienteDTO);

@@ -1,6 +1,8 @@
 ﻿using api_clientes.application.Abstracts;
 using api_clientes.application.DTO.Models;
+using Grpc.Net.Client;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace api_clientes.webapi.Controllers
@@ -11,7 +13,7 @@ namespace api_clientes.webapi.Controllers
     {
         #region Construtor
         private readonly IClienteApplicationService applicationServiceCliente;
-
+        
         public ClientesController(IClienteApplicationService applicationServiceCliente)
         {
             this.applicationServiceCliente = applicationServiceCliente;
