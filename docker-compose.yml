@@ -54,7 +54,7 @@ services:
             - service_grpc_enderecos
         build:
             context: .
-            dockerfile: Dockerfile-api-getway
+            dockerfile: api_clientes.getway/Dockerfile
         environment:
             ASPNETCORE_ENVIRONMENT: "Development"
         networks:
@@ -71,7 +71,7 @@ services:
             - service_postgres
         build:
             context: .
-            dockerfile: Dockerfile-grpc-clientes
+            dockerfile: api_clientes.grpc.services.cliente/Dockerfile
         environment:
             ASPNETCORE_ENVIRONMENT: "Development"
         networks:
@@ -88,7 +88,7 @@ services:
             - service_postgres
         build:
             context: .
-            dockerfile: Dockerfile-grpc-enderecos
+            dockerfile: api_clientes.grpc.services.endereco/Dockerfile
         environment:
             ASPNETCORE_ENVIRONMENT: "Development"
         networks:
