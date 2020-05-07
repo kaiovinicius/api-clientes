@@ -3,6 +3,8 @@ using api_clientes.data;
 using api_clientes.grpc.services.cliente.Protos;
 using api_clientes.grpc.services.endereco.Protos;
 using Autofac;
+using Grpc.Core;
+using Grpc.Net.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -32,19 +34,25 @@ namespace api_clientes.getway
 
             services.AddControllersWithViews();
 
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
             services.AddGrpcClient<ClienteService.ClienteServiceClient>(o =>
             {
-                o.Address = new Uri("https://localhost:5002");
+                o.Address = new Uri("http://localhost:5002");
+                o.ChannelOptionsActions.Add(channelOptions => channelOptions.Credentials = ChannelCredentials.Insecure);
             });
 
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
             services.AddGrpcClient<ContatoService.ContatoServiceClient>(o =>
             {
-                o.Address = new Uri("https://localhost:5002");
+                o.Address = new Uri("http://localhost:5002");
+                o.ChannelOptionsActions.Add(channelOptions => channelOptions.Credentials = ChannelCredentials.Insecure);
             });
 
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
             services.AddGrpcClient<EnderecoService.EnderecoServiceClient>(o =>
             {
-                o.Address = new Uri("https://localhost:5003");
+                o.Address = new Uri("http://localhost:5003");
+                o.ChannelOptionsActions.Add(channelOptions => channelOptions.Credentials = ChannelCredentials.Insecure);
             });
         }
 
