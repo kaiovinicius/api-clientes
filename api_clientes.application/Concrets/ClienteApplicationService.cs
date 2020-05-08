@@ -1,8 +1,8 @@
 ﻿using api_clientes.application.Abstracts;
 using api_clientes.application.DTO.Models;
 using api_clientes.cross.cutting.Abstracts;
-using api_clientes.domain.core.Abstracts.Services;
 using api_clientes.grpc.services.cliente.Protos;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
 namespace api_clientes.application.Concrets
@@ -16,7 +16,7 @@ namespace api_clientes.application.Concrets
         #endregion
 
         #region Construtor
-        public ClienteApplicationService(IClienteService serviceCliente, IMapperCliente mapperCliente, ClienteService.ClienteServiceClient serviceGrpcCliente)
+        public ClienteApplicationService(IMapperCliente mapperCliente, ClienteService.ClienteServiceClient serviceGrpcCliente)
         {
             this._mapperCliente = mapperCliente;
             this._serviceGrpcCliente = serviceGrpcCliente;

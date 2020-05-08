@@ -25,5 +25,4 @@ RUN dotnet publish "api_clientes.grpc.services.endereco.csproj" -c Release -o /a
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-EXPOSE 80
 ENTRYPOINT ["dotnet", "api_clientes.grpc.services.endereco.dll"]

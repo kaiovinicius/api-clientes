@@ -4,6 +4,7 @@ using api_clientes.grpc.services.cliente.Protos;
 using api_clientes.grpc.services.endereco.Protos;
 using Autofac;
 using Grpc.Core;
+using Grpc.Core.Logging;
 using Grpc.Net.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace api_clientes.getway
@@ -39,6 +41,7 @@ namespace api_clientes.getway
             {
                 o.Address = new Uri("http://localhost:5002");
                 o.ChannelOptionsActions.Add(channelOptions => channelOptions.Credentials = ChannelCredentials.Insecure);
+                o.ChannelOptionsActions.Add(channelOptions => channelOptions.LoggerFactory = new LoggerFactory());
             });
 
             AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
