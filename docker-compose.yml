@@ -49,8 +49,6 @@ services:
             - '5002:80'
         depends_on:
             - service_postgres
-        stdin_open: true
-        tty: true
         build:
             context: .
             dockerfile: api_clientes.grpc.services.cliente/Dockerfile
@@ -66,8 +64,6 @@ services:
             - '5003:80'
         depends_on:
             - service_postgres
-        stdin_open: true
-        tty: true
         build:
             context: .
             dockerfile: api_clientes.grpc.services.endereco/Dockerfile
