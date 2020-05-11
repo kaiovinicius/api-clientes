@@ -25,4 +25,4 @@ RUN dotnet publish "api_clientes.getway.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "api_clientes.getway.dll"]
+ENTRYPOINT ["dotnet", "api_clientes.getway.dll", "--server.urls", "http://0.0.0.0:80"]

@@ -25,4 +25,4 @@ RUN dotnet publish "api_clientes.grpc.services.cliente.csproj" -c Release -o /ap
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "api_clientes.grpc.services.cliente.dll"]
+ENTRYPOINT ["dotnet", "api_clientes.grpc.services.cliente.dll", "--server.urls", "http://0.0.0.0:80"]

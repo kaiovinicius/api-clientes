@@ -43,7 +43,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 ApiGetway", "1.1 ApiGet
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api_clientes.getway", "api_clientes.getway\api_clientes.getway.csproj", "{7266D196-5E7A-47AA-ADAD-192AAF4D5E98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api_clientes.application.Proto", "api_clientes.application.Proto\api_clientes.application.Proto.csproj", "{ABF26B28-304F-49BF-8AEA-A1D9F8789D77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api_clientes.application.Proto", "api_clientes.application.Proto\api_clientes.application.Proto.csproj", "{ABF26B28-304F-49BF-8AEA-A1D9F8789D77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8A080463-38BC-40B5-9ABD-88AACE305124}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
