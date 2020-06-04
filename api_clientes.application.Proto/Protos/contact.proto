@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+option csharp_namespace = "api_consumer.grpc.services.contact.Protos";
+
+package Contact;
+
+service ContactService {
+
+    rpc List (Empty) returns (ContactsGet);
+	rpc Get (Request) returns (ContactGet);
+    rpc Insert (ContactPost) returns (Empty);
+    rpc Update (ContactPut) returns (Empty);
+    rpc Delete (Request) returns (Empty);
+}
+
+message Empty {
+
+}
+
+message Request {
+
+  int32 Id = 1;
+
+}
+
+message ContactPost {
+  
+  int32 IdConsumer = 1;
+  string Ddd = 2;
+  string Number = 3;
+  string Email = 4;
+
+}	
+
+message ContactPut {
+  
+  int32 Id = 1;
+  int32 IdConsumer = 2;
+  string Ddd = 3;
+  string Number = 4;
+  string Email = 5;
+
+}	
+
+message ContactGet {
+  
+  int32 Id = 1;
+  int32 IdConsumer = 2;
+  string Ddd = 3;
+  string Number = 4;
+  string Email = 5;
+
+}	
+
+message ContactsGet {
+
+  repeated ContactGet items = 1;
+
+}

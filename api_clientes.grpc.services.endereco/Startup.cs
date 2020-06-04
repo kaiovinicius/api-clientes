@@ -1,6 +1,6 @@
-﻿using api_clientes.cross.cutting.IOC;
-using api_clientes.data;
-using api_clientes.grpc.services.endereco.Services;
+﻿using api_customer.cross.cutting.IOC;
+using api_customer.data;
+using api_customer.grpc.services.endereco.Services;
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 
-namespace api_clientes.grpc.services.cliente
+namespace api_customer.grpc.services.cliente
 {
     public class Startup
     {
@@ -25,9 +25,9 @@ namespace api_clientes.grpc.services.cliente
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
-            services.AddSingleton<EnderecoService>();
+            services.AddSingleton<AddressService>();
 
-            services.AddDbContext<EnderecosContext>(options =>
+            services.AddDbContext<AddressContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("Enderecos_DbConnection")));
         }
 
@@ -47,7 +47,7 @@ namespace api_clientes.grpc.services.cliente
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<EnderecoService>();
+                endpoints.MapGrpcService<AddressService>();
 
                 endpoints.MapGet("/", async context =>
                 {

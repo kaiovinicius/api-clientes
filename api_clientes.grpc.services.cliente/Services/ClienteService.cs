@@ -1,19 +1,19 @@
-﻿using api_clientes.domain.core.Abstracts.Repositories.DbClientes;
-using api_clientes.grpc.services.cliente.Protos;
+﻿using api_customer.domain.core.Abstracts.Repositories.DbClientes;
+using api_customer.grpc.services.cliente.Protos;
 using Grpc.Core;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using static api_clientes.grpc.services.cliente.Protos.ClienteService;
+using static api_customer.grpc.services.cliente.Protos.ClienteService;
 
-namespace api_clientes.grpc.services.cliente.Services
+namespace api_customer.grpc.services.cliente.Services
 {
     public class ClienteService : ClienteServiceBase
     {
         #region Construtor
-        private readonly IClienteRepository _repositoryCliente;
+        private readonly ICustomerRepository _repositoryCliente;
 
-        public ClienteService(IClienteRepository repositoryCliente)
+        public ClienteService(ICustomerRepository repositoryCliente)
         {
             this._repositoryCliente = repositoryCliente;
         }
@@ -30,18 +30,18 @@ namespace api_clientes.grpc.services.cliente.Services
         {
             ClientesGet protos = new ClientesGet();
 
-            var clientes = _repositoryCliente.Listar().ToList();
+            var clientes = _repositoryCliente.List().ToList();
 
             foreach (var cliente in clientes)
             {
                 var proto = new ClienteGet
                 {
                     Id = cliente.Id.Value,
-                    IdEndereco = cliente.IdEndereco.Value,
-                    Nome = cliente.Nome,
-                    Sobrenome = cliente.Sobrenome,
+                    IdEndereco = cliente.IdAddress.Value,
+                    Nome = cliente.Name,
+                    Sobrenome = cliente.Surname,
                     Cpf = cliente.Cpf,
-                    Sexo = cliente.Sexo.ToString()
+                    Sexo = cliente.Genre.ToString()
                 };
 
                 protos.Items.Add(proto);
@@ -60,16 +60,16 @@ namespace api_clientes.grpc.services.cliente.Services
         /// <returns></returns>
         public override Task<ClienteGet> Obter(RequestCliente request, ServerCallContext context)
         {
-            var cliente = _repositoryCliente.Obter(request.Id);
+            var cliente = _repositoryCliente.Get(request.Id);
 
             return Task.FromResult(new Protos.ClienteGet
             {
                 Id = cliente.Id.Value,
-                IdEndereco = cliente.IdEndereco.Value,
-                Nome = cliente.Nome,
-                Sobrenome = cliente.Sobrenome,
+                IdEndereco = cliente.IdAddress.Value,
+                Nome = cliente.Name,
+                Sobrenome = cliente.Surname,
                 Cpf = cliente.Cpf,
-                Sexo = cliente.Sexo.ToString()
+                Sexo = cliente.Genre.ToString()
             });
         }
         #endregion
@@ -83,16 +83,16 @@ namespace api_clientes.grpc.services.cliente.Services
         /// <returns></returns>
         public override Task<EmptyCliente> Inserir(ClientePost request, ServerCallContext context)
         {
-            var cliente = new domain.Entities.Cliente
+            var cliente = new domain.Entities.Customer
             {
-                IdEndereco = request.IdEndereco,
-                Nome = request.Nome,
-                Sobrenome = request.Sobrenome,
+                IdAddress = request.IdEndereco,
+                Name = request.Nome,
+                Surname = request.Sobrenome,
                 Cpf = request.Cpf,
-                Sexo = request.Sexo.ToCharArray()[0]
+                Genre = request.Sexo.ToCharArray()[0]
             };
 
-            _repositoryCliente.Inserir(cliente);
+            _repositoryCliente.Insert(cliente);
 
             return Task.FromResult(new EmptyCliente());
         }
@@ -107,22 +107,22 @@ namespace api_clientes.grpc.services.cliente.Services
         /// <returns></returns>
         public override Task<EmptyCliente> Alterar(ClientePut request, ServerCallContext context)
         {
-            var cliente = new domain.Entities.Cliente
+            var cliente = new domain.Entities.Customer
             {
                 Id = request.Id,
-                IdEndereco = request.IdEndereco,
-                Nome = request.Nome,
-                Sobrenome = request.Sobrenome,
+                IdAddress = request.IdEndereco,
+                Name = request.Nome,
+                Surname = request.Sobrenome,
                 Cpf = request.Cpf,
-                Sexo = request.Sexo.ToCharArray()[0]
+                Genre = request.Sexo.ToCharArray()[0]
             };
 
-            if (_repositoryCliente.Obter(cliente.Id) == null)
+            if (_repositoryCliente.Get(cliente.Id) == null)
             {
                 throw new ApplicationException("Cliente não encontrado.");
             }
 
-            _repositoryCliente.Alterar(cliente);
+            _repositoryCliente.Update(cliente);
 
             return Task.FromResult(new EmptyCliente());
         }
@@ -137,12 +137,12 @@ namespace api_clientes.grpc.services.cliente.Services
         /// <returns></returns>
         public override Task<EmptyCliente> Excluir(RequestCliente request, ServerCallContext context)
         {
-            if (_repositoryCliente.Obter(request.Id) == null)
+            if (_repositoryCliente.Get(request.Id) == null)
             {
                 throw new ApplicationException("Cliente não encontrado.");
             }
 
-            _repositoryCliente.Excluir(request.Id);
+            _repositoryCliente.Delete(request.Id);
 
             return Task.FromResult(new EmptyCliente());
         }

@@ -1,7 +1,7 @@
-using api_clientes.cross.cutting.IOC;
-using api_clientes.data;
-using api_clientes.grpc.services.cliente.Protos;
-using api_clientes.grpc.services.endereco.Protos;
+using api_customer.cross.cutting.IOC;
+using api_customer.data;
+using api_customer.grpc.services.cliente.Protos;
+using api_customer.grpc.services.endereco.Protos;
 using Autofac;
 using Grpc.Core;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 
-namespace api_clientes.getway
+namespace api_customer.getway
 {
     public class Startup
     {
@@ -25,10 +25,10 @@ namespace api_clientes.getway
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ClientesContext>(options =>
+            services.AddDbContext<CustomerContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("Clientes_DbConnection")));
 
-            services.AddDbContext<EnderecosContext>(options =>
+            services.AddDbContext<AddressContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("Enderecos_DbConnection")));
 
             services.AddControllersWithViews();

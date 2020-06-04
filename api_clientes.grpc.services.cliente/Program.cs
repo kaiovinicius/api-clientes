@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace api_clientes.grpc.services.cliente
+namespace api_customer.grpc.services.cliente
 {
     public class Program
     {

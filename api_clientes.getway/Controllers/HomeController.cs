@@ -1,9 +1,9 @@
-﻿using api_clientes.getway.Models;
+﻿using api_customer.getway.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
-namespace api_clientes.getway.Controllers
+namespace api_customer.getway.Controllers
 {
     public class HomeController : Controller
     {

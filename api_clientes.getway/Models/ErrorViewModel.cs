@@ -1,6 +1,6 @@
 using System;
 
-namespace api_clientes.getway.Models
+namespace api_customer.getway.Models
 {
     public class ErrorViewModel
     {

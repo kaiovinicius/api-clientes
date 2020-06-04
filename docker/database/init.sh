@@ -3,42 +3,42 @@ set -e
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
     
-    CREATE DATABASE db_enderecos;
-	CREATE DATABASE db_clientes;
+    CREATE DATABASE db_addresses;
+	CREATE DATABASE db_customers;
 
-    \c db_enderecos
+    \c db_addresses
     
-    CREATE TABLE "Endereco" (
+    CREATE TABLE "Address" (
 	id serial NOT NULL,
-	cep VARCHAR (8) NOT NULL,
-	logradouro VARCHAR (255) NOT NULL,
-	bairro VARCHAR (100) NOT NULL,
-	cidade VARCHAR (100) NOT NULL,
-	estado VARCHAR (100) NOT NULL,
-	CONSTRAINT "Endereco_PK" PRIMARY KEY (id)
+	zipCode VARCHAR (8) NOT NULL,
+	publicArea VARCHAR (255) NOT NULL,
+	neighborhood VARCHAR (100) NOT NULL,
+	city VARCHAR (100) NOT NULL,
+	state VARCHAR (100) NOT NULL,
+	CONSTRAINT "Address_PK" PRIMARY KEY (id)
 	);
 
-    \c db_clientes
+    \c db_customers
 
-    CREATE TABLE "Cliente" (
+    CREATE TABLE "Customer" (
     id serial NOT NULL,
-    "idEndereco" integer NULL,
-    nome VARCHAR (100) NOT NULL,
-    sobrenome VARCHAR (100) NOT NULL,
+    "idAddress" integer NULL,
+    name VARCHAR (100) NOT NULL,
+    surname VARCHAR (100) NOT NULL,
     cpf VARCHAR (100) NOT NULL,
-    sexo CHAR (1) NOT NULL,
-    CONSTRAINT "Cliente_PK" PRIMARY KEY (id)
+    genre CHAR (1) NOT NULL,
+    CONSTRAINT "Customer_PK" PRIMARY KEY (id)
 	);
 
-	CREATE TABLE "Contato" (
+	CREATE TABLE "Contact" (
     id serial NOT NULL,
-    "idCliente" integer NOT NULL,
+    "idCustomer" integer NOT NULL,
     ddd VARCHAR (2) NOT NULL,
-    numero VARCHAR (20) NOT NULL,
+    number VARCHAR (20) NOT NULL,
     email VARCHAR (50) NOT NULL,
     CONSTRAINT "Contato_PK" PRIMARY KEY (id),
-    CONSTRAINT "FK_id_Cliente" FOREIGN KEY ("idCliente")
-        REFERENCES "Cliente" (id) MATCH SIMPLE
+    CONSTRAINT "FK_id_Customer" FOREIGN KEY ("idCustomer")
+        REFERENCES "Customer" (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 	);

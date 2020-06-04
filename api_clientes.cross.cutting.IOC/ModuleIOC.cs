@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace api_clientes.cross.cutting.IOC
+namespace api_customer.cross.cutting.IOC
 {
     public class ModuleIOC : Module
     {

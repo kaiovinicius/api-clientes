@@ -1,19 +1,19 @@
-﻿using api_clientes.domain.core.Abstracts.Repositories.DbClientes;
-using api_clientes.grpc.services.cliente.Protos;
+﻿using api_customer.domain.core.Abstracts.Repositories.DbClientes;
+using api_customer.grpc.services.cliente.Protos;
 using Grpc.Core;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using static api_clientes.grpc.services.cliente.Protos.ContatoService;
+using static api_customer.grpc.services.cliente.Protos.ContatoService;
 
-namespace api_clientes.grpc.services.cliente.Services
+namespace api_customer.grpc.services.cliente.Services
 {
     public class ContatoService : ContatoServiceBase
     {
         #region Construtor
-        private readonly IContatoRepository _repositoryContato;
+        private readonly IContactRepository _repositoryContato;
 
-        public ContatoService(IContatoRepository repositoryContato)
+        public ContatoService(IContactRepository repositoryContato)
         {
             this._repositoryContato = repositoryContato;
         }
@@ -30,16 +30,16 @@ namespace api_clientes.grpc.services.cliente.Services
         {
             ContatosGet protos = new ContatosGet();
 
-            var contatos = _repositoryContato.Listar().ToList();
+            var contatos = _repositoryContato.List().ToList();
 
             foreach (var contato in contatos)
             {
                 var proto = new ContatoGet
                 {
                     Id = contato.Id.Value,
-                    IdCliente = contato.IdCliente,
+                    IdCliente = contato.IdCustomer,
                     Ddd = contato.Ddd,
-                    Numero = contato.Numero,
+                    Numero = contato.Number,
                     Email = contato.Email
                 };
 
@@ -59,14 +59,14 @@ namespace api_clientes.grpc.services.cliente.Services
         /// <returns></returns>
         public override Task<ContatoGet> Obter(RequestContato request, ServerCallContext context)
         {
-            var contato = _repositoryContato.Obter(request.Id);
+            var contato = _repositoryContato.Get(request.Id);
 
             return Task.FromResult(new ContatoGet
             {
                 Id = contato.Id.Value,
-                IdCliente = contato.IdCliente,
+                IdCliente = contato.IdCustomer,
                 Ddd = contato.Ddd,
-                Numero = contato.Numero,
+                Numero = contato.Number,
                 Email = contato.Email
             });
         }
@@ -81,15 +81,15 @@ namespace api_clientes.grpc.services.cliente.Services
         /// <returns></returns>
         public override Task<EmptyContato> Inserir(ContatoPost request, ServerCallContext context)
         {
-            var contato = new domain.Entities.Contato
+            var contato = new domain.Entities.Contact
             {
-                IdCliente = request.IdCliente,
+                IdCustomer = request.IdCliente,
                 Ddd = request.Ddd,
-                Numero = request.Numero,
+                Number = request.Numero,
                 Email = request.Email
             };
 
-            _repositoryContato.Inserir(contato);
+            _repositoryContato.Insert(contato);
 
             return Task.FromResult(new EmptyContato());
         }
@@ -104,21 +104,21 @@ namespace api_clientes.grpc.services.cliente.Services
         /// <returns></returns>
         public override Task<EmptyContato> Alterar(ContatoPut request, ServerCallContext context)
         {
-            var contato = new domain.Entities.Contato
+            var contato = new domain.Entities.Contact
             {
                 Id = request.Id,
-                IdCliente = request.IdCliente,
+                IdCustomer = request.IdCliente,
                 Ddd = request.Ddd,
-                Numero = request.Numero,
+                Number = request.Numero,
                 Email = request.Email
             };
 
-            if (_repositoryContato.Obter(contato.Id) == null)
+            if (_repositoryContato.Get(contato.Id) == null)
             {
                 throw new ApplicationException("Contato não encontrado.");
             }
 
-            _repositoryContato.Alterar(contato);
+            _repositoryContato.Update(contato);
 
             return Task.FromResult(new EmptyContato());
         }
@@ -133,12 +133,12 @@ namespace api_clientes.grpc.services.cliente.Services
         /// <returns></returns>
         public override Task<EmptyContato> Excluir(RequestContato request, ServerCallContext context)
         {
-            if (_repositoryContato.Obter(request.Id) == null)
+            if (_repositoryContato.Get(request.Id) == null)
             {
                 throw new ApplicationException("Contato não encontrado.");
             }
 
-            _repositoryContato.Excluir(request.Id);
+            _repositoryContato.Delete(request.Id);
 
             return Task.FromResult(new EmptyContato());
         }
