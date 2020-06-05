@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>api_customer.domain.core</AssemblyName>
+    <RootNamespace>api_customer.domain.core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\api_customer.domain\api_customer.domain.csproj" />
+  </ItemGroup>
+
+</Project>

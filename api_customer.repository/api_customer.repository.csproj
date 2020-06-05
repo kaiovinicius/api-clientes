@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>api_customer.repository</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\api_customer.data\api_customer.data.csproj" />
+    <ProjectReference Include="..\api_customer.domain.core\api_customer.domain.core.csproj" />
+    <ProjectReference Include="..\api_customer.domain\api_customer.domain.csproj" />
+  </ItemGroup>
+
+</Project>
