@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+option csharp_namespace = "api_customer.grpc.services.address.Protos";
+
+package address;
+
+service AddressService {
+
+    rpc List (Empty) returns (AddressesGet);
+	rpc Get (Request) returns (AddressGet);
+    rpc Insert (AddresPost) returns (Empty);
+    rpc Update (AddressPut) returns (Empty);
+    rpc Delete (Request) returns (Empty);
+}
+
+message Empty {
+
+}
+
+message Request {
+
+  int32 Id = 1;
+
+}
+
+message AddresPost {
+  
+  string ZipCode = 1;
+  string PublicArea = 2;
+  string Neighborhood = 3;
+  string City = 4;
+  string State = 5;
+
+}
+
+message AddressPut {
+  
+  int32 Id = 1;
+  string ZipCode = 2;
+  string PublicArea = 3;
+  string Neighborhood = 4;
+  string City = 5;
+  string State = 6;
+
+}
+
+message AddressGet {
+  
+  int32 Id = 1;
+  string ZipCode = 2;
+  string PublicArea = 3;
+  string Neighborhood = 4;
+  string City = 5;
+  string State = 6;
+
+}	
+
+message AddressesGet {
+
+  repeated AddressGet items = 1;
+
+}	

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>api_customer.services</AssemblyName>
+    <RootNamespace>api_customer.services</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\api_customer.cross.cutting\api_customer.cross.cutting.csproj" />
+    <ProjectReference Include="..\api_customer.domain.core\api_customer.domain.core.csproj" />
+    <ProjectReference Include="..\api_customer.domain\api_customer.domain.csproj" />
+  </ItemGroup>
+
+</Project>

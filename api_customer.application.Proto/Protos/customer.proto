@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+option csharp_namespace = "api_customer.grpc.services.customer.Protos";
+
+package customer;
+
+service CustomerService {
+
+    rpc List (Empty) returns (CustomersGet);
+	rpc Get (Request) returns (CustomerGet);
+    rpc Insert (CustomerPost) returns (Empty);
+    rpc Update (CustomerPut) returns (Empty);
+    rpc Delete (Request) returns (Empty);
+}
+
+message Empty {
+
+}
+
+message Request {
+
+  int32 Id = 1;
+
+}
+
+message CustomerPost {
+  
+  int32 IdAddress = 1;
+  string Name = 2;
+  string Surname = 3;
+  string Cpf = 4;
+  string Genre = 5;
+
+}	
+
+message CustomerPut {
+  
+  int32  Id = 1;
+  int32 IdAddress = 2;
+  string Name = 3;
+  string Surname = 4;
+  string Cpf = 5;
+  string Genre = 6;
+
+}	
+
+message CustomerGet {
+  
+  int32  Id = 1;
+  int32 IdAddress = 2;
+  string Name = 3;
+  string Surname = 4;
+  string Cpf = 5;
+  string Genre = 6;
+
+}	
+
+message CustomersGet {
+
+  repeated CustomerGet items = 1;
+
+}

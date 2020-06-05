@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>api_customer.cross.cutting.IOC</AssemblyName>
+    <RootNamespace>api_customer.cross.cutting.IOC</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\api_customer.application\api_customer.application.csproj" />
+    <ProjectReference Include="..\api_customer.cross.cutting\api_customer.cross.cutting.csproj" />
+    <ProjectReference Include="..\api_customer.domain.core\api_customer.domain.core.csproj" />
+    <ProjectReference Include="..\api_customer.repository\api_customer.repository.csproj" />
+    <ProjectReference Include="..\api_customer.services\api_customer.services.csproj" />
+  </ItemGroup>
+
+</Project>
