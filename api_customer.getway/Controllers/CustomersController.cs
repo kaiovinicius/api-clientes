@@ -9,11 +9,11 @@ namespace api_customer.getway.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        #region Variáveis
+        #region Variables
         private readonly ICustomerApplicationService applicationServiceCustomer;
         #endregion
 
-        #region Construtor
+        #region Constructor
         public CustomersController(ICustomerApplicationService applicationServiceCustomer)
         {
             this.applicationServiceCustomer = applicationServiceCustomer;
